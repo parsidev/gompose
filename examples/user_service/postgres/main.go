@@ -1,12 +1,12 @@
 package main
 
 import (
-	"Gompose/core"
-	"Gompose/db/postgres"
-	"Gompose/http"
-	"Gompose/http/gin"
-	"Gompose/http/middlewares"
 	"errors"
+	"github.com/Lumicrate/gompose/core"
+	"github.com/Lumicrate/gompose/db/postgres"
+	"github.com/Lumicrate/gompose/http"
+	"github.com/Lumicrate/gompose/http/gin"
+	"github.com/Lumicrate/gompose/http/middlewares"
 	"log"
 	"strings"
 	"time"
@@ -55,7 +55,7 @@ func CORSMiddleware() http.MiddlewareFunc {
 
 func main() {
 	// Configure Postgres DSN
-	dsn := "host=localhost user=postgres password=1234 dbname=users port=5432 sslmode=disable"
+	dsn := "host=localhost user=user password=password dbname=mydb port=5432 sslmode=disable"
 
 	// Initialize Postgres DB adapter
 	dbAdapter := postgres.New(dsn)

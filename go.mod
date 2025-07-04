@@ -1,4 +1,4 @@
-module Gompose
+module github.com/Lumicrate/gompose
 
 go 1.23.10
 

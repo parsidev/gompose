@@ -1,8 +1,8 @@
 package postgres
 
 import (
-	"Gompose/db"
 	"fmt"
+	"github.com/Lumicrate/gompose/db"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"reflect"

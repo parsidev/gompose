@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"Gompose/http"
+	"github.com/Lumicrate/gompose/http"
 	"sync"
 	"time"
 )

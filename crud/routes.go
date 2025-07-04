@@ -1,8 +1,8 @@
 package crud
 
 import (
-	"Gompose/db"
-	"Gompose/http"
+	"github.com/Lumicrate/gompose/db"
+	"github.com/Lumicrate/gompose/http"
 	"reflect"
 	"strings"
 )

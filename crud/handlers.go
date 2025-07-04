@@ -1,10 +1,10 @@
 package crud
 
 import (
-	"Gompose/db"
-	"Gompose/hooks"
-	"Gompose/http"
 	"encoding/json"
+	"github.com/Lumicrate/gompose/db"
+	"github.com/Lumicrate/gompose/hooks"
+	"github.com/Lumicrate/gompose/http"
 	"reflect"
 	"strconv"
 	"strings"

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"Gompose/core"
-	"Gompose/db/mongodb"
-	"Gompose/http/gin"
-	"Gompose/http/middlewares"
 	"errors"
+	"github.com/Lumicrate/gompose/core"
+	"github.com/Lumicrate/gompose/db/mongodb"
+	"github.com/Lumicrate/gompose/http/gin"
+	"github.com/Lumicrate/gompose/http/middlewares"
 	"log"
 	"strings"
 	"time"

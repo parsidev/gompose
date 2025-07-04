@@ -1,9 +1,9 @@
 package core
 
 import (
-	"Gompose/crud"
-	"Gompose/db"
-	"Gompose/http"
+	"github.com/Lumicrate/gompose/crud"
+	"github.com/Lumicrate/gompose/db"
+	"github.com/Lumicrate/gompose/http"
 	"log"
 )
 

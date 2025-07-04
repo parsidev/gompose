@@ -1,8 +1,8 @@
 package ginadapter
 
 import (
-	"Gompose/http"
 	"fmt"
+	"github.com/Lumicrate/gompose/http"
 	"github.com/gin-gonic/gin"
 )
 
