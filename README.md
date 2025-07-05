@@ -42,13 +42,10 @@ Setting up **Gompose** is so easy and quick you only have to tell what you want,
 package main
 
 import (
-    "time"
     "github.com/Lumicrate/gompose/core"
     "github.com/Lumicrate/gompose/db/postgres"
     "github.com/Lumicrate/gompose/http/gin"
     "github.com/Lumicrate/gompose/middlewares"
-	"errors"
-	"strings"
 )
 
 // Define your entities
@@ -95,7 +92,7 @@ func main() {
         RegisterMiddleware(middlewares.LoggingMiddleware()). // use built-in middlewares
         RegisterMiddleware(CORSMiddleware()) // use your custom middleware
 
-    app.Start()
+    app.Run() // run your application
 }
 ```
 
