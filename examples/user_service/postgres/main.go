@@ -71,7 +71,7 @@ func main() {
 		UseHTTP(httpEngine).
 		RegisterMiddleware(middlewares.LoggingMiddleware()).
 		RegisterMiddleware(middlewares.RateLimitMiddleware(1 * time.Second)).
-		RegisterMiddleware(CORSMiddleware()) // custom middleware
+		RegisterMiddleware(CORSMiddleware())
 
 	// Run the app
 	log.Println("Starting service on :8080")
