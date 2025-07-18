@@ -3,18 +3,18 @@ package crud
 import (
 	"github.com/Lumicrate/gompose/db"
 	"github.com/Lumicrate/gompose/http"
+	"github.com/Lumicrate/gompose/utils"
 	"reflect"
 	"strings"
 )
 
 func RegisterCRUDRoutes(engine http.HTTPEngine, dbAdapter db.DBAdapter, entity any) {
-	// Use reflection to get entity type name, e.g., "User"
 	t := reflect.TypeOf(entity)
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem()
 	}
 	entityName := t.Name()
-	basePath := "/" + strings.ToLower(entityName) + "s" // simple pluralizer (add 's')
+	basePath := "/" + strings.ToLower(utils.Pluralize(entityName))
 
 	// GET /entities (list)
 	engine.RegisterRoute("GET", basePath, func(ctx http.Context) {

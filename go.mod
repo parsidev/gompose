@@ -3,6 +3,7 @@ module github.com/Lumicrate/gompose
 go 1.23.10
 
 require (
+	github.com/gertd/go-pluralize v0.2.1
 	github.com/gin-gonic/gin v1.10.1
 	go.mongodb.org/mongo-driver v1.17.4
 	golang.org/x/net v0.25.0
