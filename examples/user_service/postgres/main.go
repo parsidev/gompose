@@ -69,9 +69,6 @@ func main() {
 		AddEntity(Office{}).
 		UseDB(dbAdapter).
 		UseHTTP(httpEngine).
-		//RegisterMiddleware(middlewares.LoggingMiddleware()).
-		//RegisterMiddleware(middlewares.RateLimitMiddleware(1 * time.Second)).
-		//RegisterMiddleware(CORSMiddleware()).
 		UseSwagger()
 
 	// Run the app
