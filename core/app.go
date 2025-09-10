@@ -1,12 +1,14 @@
 package core
 
 import (
+	"log"
+
 	"github.com/Lumicrate/gompose/auth"
 	"github.com/Lumicrate/gompose/crud"
 	"github.com/Lumicrate/gompose/db"
 	"github.com/Lumicrate/gompose/docs/swagger"
 	"github.com/Lumicrate/gompose/http"
-	"log"
+	"github.com/Lumicrate/gompose/i18n"
 )
 
 type App struct {
@@ -16,6 +18,7 @@ type App struct {
 	middlewares     []http.MiddlewareFunc
 	authProvider    auth.AuthProvider
 	swaggerProvider *swagger.SwaggerProvider
+	localization    *i18n.Translator
 }
 
 type registeredEntity struct {
@@ -67,18 +70,40 @@ func (a *App) UseAuth(provider auth.AuthProvider) *App {
 	return a
 }
 
+func (a *App) UseI18n(directory, defaultLocale string) *App {
+	var err error
+
+	if a.localization, err = i18n.NewI18n(directory, defaultLocale); err != nil {
+		log.Fatalf("i18n Init failed: %v", err)
+	}
+
+	return a
+}
+
+func (a *App) SetLocale(locale string) *App {
+	a.localization = a.localization.SetLocale(locale)
+
+	return a
+}
+
+func (a *App) T(messageID string, args ...any) string {
+	return a.localization.T(messageID, args...)
+}
+
 func (a *App) UseSwagger() *App {
 	a.swaggerProvider = swagger.NewSwaggerProvider()
 	return a
 }
 
 func (a *App) Run() {
-	if err := a.dbAdapter.Init(); err != nil {
-		log.Fatalf("DB Init failed: %v", err)
-	}
+	if a.dbAdapter != nil {
+		if err := a.dbAdapter.Init(); err != nil {
+			log.Fatalf("DB Init failed: %v", err)
+		}
 
-	if err := a.dbAdapter.Migrate(a.Entities()); err != nil {
-		log.Fatalf("DB Migration failed: %v", err)
+		if err := a.dbAdapter.Migrate(a.Entities()); err != nil {
+			log.Fatalf("DB Migration failed: %v", err)
+		}
 	}
 
 	if a.authProvider != nil {
