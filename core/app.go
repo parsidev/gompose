@@ -77,6 +77,8 @@ func (a *App) UseI18n(directory, defaultLocale string) *App {
 		log.Fatalf("i18n Init failed: %v", err)
 	}
 
+	a.middlewares = append(a.middlewares, a.localization.GetMiddleware())
+
 	return a
 }
 

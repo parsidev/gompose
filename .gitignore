@@ -11,6 +11,8 @@
 # Output of `go install`
 bin/
 
+test/
+
 # Dependency directories (when using vendoring)
 vendor/
 

@@ -199,6 +199,7 @@ func (t *Translator) T(messageID string, args ...any) string {
 		data      map[string]any
 		lang      string
 		localizer *go18n.Localizer
+		ctx       http.Context
 	)
 
 	for _, arg := range args {
@@ -207,6 +208,8 @@ func (t *Translator) T(messageID string, args ...any) string {
 			data = v
 		case string:
 			lang = v
+		case http.Context:
+			ctx = v
 		}
 	}
 
@@ -214,7 +217,15 @@ func (t *Translator) T(messageID string, args ...any) string {
 		lang = t.locale
 	}
 
-	localizer = go18n.NewLocalizer(t.bundle, lang)
+	if ctx != nil {
+		if l := ctx.Get(CtxLocalizer); l != nil {
+			localizer = l.(*go18n.Localizer)
+		}
+	}
+
+	if localizer == nil {
+		localizer = go18n.NewLocalizer(t.bundle, lang)
+	}
 
 	return localize(localizer, messageID, data)
 }
